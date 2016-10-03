@@ -1,6 +1,3 @@
-# Config file for automatic testing at travis-ci.org
-# This file will be regenerated if you run travis_pypi_setup.py
-
 sudo: false
 
 language: generic
@@ -46,14 +43,13 @@ after_success:
 notifications:
   email: false
 
-# After you create the Github repo and add it to Travis, run the
-# travis_pypi_setup.py script to finish PyPI deployment setup
+# Deploy package to PyPI when tagged.
 deploy:
   provider: pypi
   distributions: sdist
   user: jakirkham
   password:
-    secure: PLEASE_REPLACE_ME
+    secure: nzAWi+/Y1nfIATncPOu6F48lz4xIEb5FDDXGEqLJWDV0qFoSeW7IMpT2xgg43lzz7Tz7SL+t8iI+ey/Y1+rjDRbEW/+MzpUYAcoZ4A4gk+CbsTwE5du7LFdQUF8BmaCW2yQcbmTODSAbRIEbqFcbjqgjQgCXYcBdZucMfjUgaRarjhpj2GdmfpN1jAwOXBxb5G1d99WWBW9Bg9JOfJK9620mI6QbPlc0QI4008yOWTTJp1e1DRxYXSV1fOnZw/l23fcCeXnkUOrHqD6eW1I16/+tdK8Wxi5seMnKyjGrTkn1G+iG/HrctZARH3k7RWVUJ0sc/s3Oy2RhyDLKHKNM/gQwOFE+k0pl/FbxDZCTf5x2y8wtSl8MKssnRUITsSnTMmhuYD4RLUewACog8CUK5WAOgMiP7pdVfLEfn/pk7Nm8hP8eLHbh9FKFSINQ7OwLCqfmSP7+b0qMyH/OB1MC31SRmWPwkOsK0vRkfSH8cRxfV3Dw8yT6/48YKDWU0B15XfUSAvxLDihT2wwz8V3dfIZZcg2c517N5OAXpMWt0cCHXt4Hhym7adKQD+QVYuYbM/WxQe8DnMSnCMza9P/rH2wf7BF9hwXmpLlPxE02W5F6lOzieO1hzYSHFuIi4eMMYbDRQvX9GTrBWrEQqk6GVYGfQUlI/Y2Gj9A+naZvPcQ=
   on:
     tags: true
     repo: jakirkham/metawrap
