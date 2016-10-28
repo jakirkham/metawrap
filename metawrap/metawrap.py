@@ -494,7 +494,7 @@ def with_setup_state(setup=None, teardown=None):
             ("teardown", teardown)
         ])
         stage_orderer = [(lambda a, b: (a, b)), (lambda a, b: (b, a))]
-        stage_itr = zip(reversed(stage_dict.items()), stage_orderer)
+        stage_itr = zip(reversed(list(stage_dict.items())), stage_orderer)
 
         for (each_stage_name, each_new_stage), each_stage_orderer in stage_itr:
             each_old_stage = getattr(a_callable, each_stage_name, None)
