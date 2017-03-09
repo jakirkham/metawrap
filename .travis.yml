@@ -1,8 +1,12 @@
+# Config file for automatic testing at travis-ci.org
+# This file will be regenerated if you run travis_pypi_setup.py
+
 sudo: false
 
 language: generic
 
 env:
+  - PYVER="3.6"
   - PYVER="3.5"
   - PYVER="3.4"
   - PYVER="2.7"
@@ -22,7 +26,7 @@ install:
   # Create the test environment.
   - conda create -y -n testenv python="${PYVER}"
   - conda remove -y --force -n testenv openssl
-  - conda env update -n testenv --file environment_dev.yml
+  - conda env update -n testenv --file environment_ci.yml
   - conda list --full-name -n testenv openssl || conda install -y -n testenv openssl
   - source activate testenv
 
@@ -33,17 +37,24 @@ install:
 script:
   - coverage erase
   - coverage run --source . setup.py test
-  - coverage report
+  - coverage report -m
 
 # Report coverage
 after_success:
+  - source activate root
+  - conda create -y -n dplenv python="3.5";
+  - conda remove -y --force -n dplenv openssl
+  - conda env update -n dplenv --file environment_dpl.yml
+  - conda list --full-name -n dplenv openssl || conda install -y -n dplenv openssl
+  - source activate dplenv
   - coveralls
 
 # Disable email notifications.
 notifications:
   email: false
 
-# Deploy package to PyPI when tagged.
+# After you create the Github repo and add it to Travis, run the
+# travis_pypi_setup.py script to finish PyPI deployment setup
 deploy:
   provider: pypi
   distributions: sdist
