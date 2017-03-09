@@ -110,6 +110,7 @@ class TestWrappers(unittest.TestCase):
         self.assertFalse(hasattr(func, "__wrapped__"))
         self.assertTrue(hasattr(func_wrapped, "__wrapped__"))
         self.assertEqual(func_wrapped.__wrapped__, func)
+        self.assertEqual(func_wrapped(0), func(0))
 
 
     def test_static_variables(self):
